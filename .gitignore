@@ -6,6 +6,8 @@
 # Mac OSX temporary files
 .DS_Store
 **/.DS_Store
+bitcoind
+ic
 
 # dfx temporary files
 .dfx/

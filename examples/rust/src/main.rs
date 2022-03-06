@@ -153,7 +153,10 @@ pub async fn send(amount: u64, destination: String) {
     // Cache the spent outputs to not use them for future transactions.
     for tx_in in spending_transaction.input.iter() {
         SPENT_TXOS.with(|spent_txos| {
-            print(&format!("Caching {:?}", tx_in.previous_output.txid.to_vec()));
+            print(&format!(
+                "Caching {:?}",
+                tx_in.previous_output.txid.to_vec()
+            ));
             spent_txos.borrow_mut().insert(OutPoint {
                 txid: tx_in.previous_output.txid.to_vec(),
                 vout: tx_in.previous_output.vout,

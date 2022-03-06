@@ -12,6 +12,7 @@ use ic_btc_types::{
 };
 use ic_cdk::api::print;
 use ic_cdk::export::candid::candid_method;
+use ic_cdk::export::candid::export_service;
 use ic_cdk_macros::{query, update};
 use prost::Message;
 use std::{cell::RefCell, collections::VecDeque, str::FromStr};
@@ -503,4 +504,14 @@ mod test {
             Err(SendTransactionError::MalformedTransaction)
         );
     }
+}
+
+// CANDID interface for candid UI
+
+export_service!();
+
+#[query(name = "__get_candid_interface_tmp_hack")]
+#[candid_method(query, rename = "__get_candid_interface_tmp_hack")]
+fn export_candid() -> String {
+    __export_service()
 }
